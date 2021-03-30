@@ -6,7 +6,7 @@
 def crop(file):
     from PIL import Image
     im = Image.open(file)
-
+    exif = im.info['exif']
 # Choose image size. For the D850, starting image size is 8256 x 5504, aspect ratio 1.5. Cropping down to 24MP
 # preserves this aspect ratio and shrinks the file size down massively.
 
@@ -22,11 +22,11 @@ def crop(file):
     # Crop the center of the image
     im = im.crop((left, top, right, bottom))
 
-    im.save(file)
+    im.save(file, exif=exif)
 
 import os
 
-directory = "C:/Insert/Directory/Here"  # Sets WD where obj files are stored - INPUT NEEDED
+directory = "C:/Insert/Directory/Here/"  # Sets WD where obj files are stored - INPUT NEEDED
 for filename in os.listdir(directory):
     if filename.endswith(".JPG"):
         crop(os.path.join(directory, filename))

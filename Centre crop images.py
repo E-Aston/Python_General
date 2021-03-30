@@ -1,3 +1,8 @@
+# Helper function written for cropping images from the centre. The purpose is to remove parts of the image
+# with significant barrel distortion. Remember to preserve the aspect ratio! The script as-is is designed
+# to turn the 40.5MP images from a NIKON D850 and remove all the edges, resulting in a 24MP image. 
+
+
 def crop(file):
     from PIL import Image
     im = Image.open(file)
